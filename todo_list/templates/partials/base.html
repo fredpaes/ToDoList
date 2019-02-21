@@ -1,0 +1,72 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ToDo App</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="{% url 'home' %}" class="brand-logo">To-Do List</a>
+            <a href="#" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-small-only">
+                <form action="">
+                <div class="input-field inline">
+                    <input id="toDoAdd" type="text" class="validate">
+                    <label for="toDoAdd">Add item</label>
+                </div>
+                <a class="btn-flat">Add to List</a>
+                </form>
+            </ul>
+        </div>
+    </nav>
+            
+    <ul class="sidenav" id="mobile">
+        <form action="">
+            <div class="input-field inline">
+                <input id="toDoAdd" type="text" class="validate">
+                <label for="toDoAdd">Add item</label>
+            </div>
+            <a class="btn-flat">Add to List</a>
+        </form>
+    </ul>
+
+    {% block content %}
+    {% endblock %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+    <style>
+        nav {
+            background-color: #263238;
+        }
+        input[type=text]:not(.browser-default):focus:not([readonly]) {
+            box-shadow: none;
+            border-bottom: none;
+        }
+        input[type=text]:not(.browser-default) {
+            border-radius: 5px;
+            background-color: #455a64;
+            color: white;
+        }
+        /* input[type=text]:not(.browser-default):focus:not([readonly]) + label {
+            color: #9e9e9e;
+        } */
+        label {
+            color: #9e9e9e !important;
+        }
+        nav .brand-logo {
+            position: unset;
+        }
+        @media only screen and (max-width: 992px) {
+            nav .brand-logo{
+                margin-left: 10% !important;
+            }
+        }
+    </style>
+</body>
+</html>
