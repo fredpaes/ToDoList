@@ -1,7 +1,13 @@
 {% extends 'partials/base.html' %}
 
+{% load staticfiles %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/add.css' %}">
+{% endblock %}
+
 {% block content %}
 <form action="">
+    {% csrf_token %}
     <div class="input-field inline">
         <input id="toDoAdd" type="text" class="validate">
         <label for="toDoAdd">Add item</label>
