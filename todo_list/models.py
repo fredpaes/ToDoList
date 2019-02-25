@@ -7,7 +7,7 @@ class List(models.Model):
         ('in', 'interior'),
     )
     item = models.CharField(max_length=100)
-    location = models.CharField(max_length=3, choices=LOCATION)
+    location = models.CharField(max_length=3, choices=LOCATION, default='in')
     cant = models.FloatField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     completed = models.BooleanField(default=False)
