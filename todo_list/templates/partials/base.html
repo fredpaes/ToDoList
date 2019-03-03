@@ -5,12 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ToDo App</title>
+    <title>{% block title %}ToDo App{% endblock %}</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
-    {% block css %}
-    {% endblock %}
+    {% block css %}{% endblock %}
 </head>
 <body>
     <nav style="background-color: #263238;">
@@ -18,8 +17,13 @@
             <a class="brand-logo">To-Do List</a>
             <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
+                {% if user.is_authenticated %}
                 <li><a href="{% url 'add' %}">Agregar item</a></li>
                 <li><a href="{% url 'home' %}">Ver lista</a></li>
+                <li><a href="">Salir</a></li>
+                {% else %}
+                <li><a href="">Iniciar sesión</a></li>
+                {% endif %}
             </ul>
         </div>
     </nav>
@@ -30,23 +34,36 @@
                 <div class="background">
                     <img src="{% static 'img/webdev.jpg' %}">
                 </div>
-                <a href="#user"><img class="circle" src="https://www.fdexasesores.com/img/fdexsocial/fred.png"></a>
+                <a href="#user">
+                    {% if user.is_authenticated %}
+                    <img class="circle" src="https://www.fdexasesores.com/img/fdexsocial/fred.png">
+                    {% else %}
+                    <i class="material-icons">account_circle</i>
+                    {% endif %}
+                </a>
+                {% if user.is_authenticated %}
                 <div class="">
-                    <a href="#name"><span class="white-text name">Fred Paucar</span></a>
-                    <a href="#email"><span class="white-text email">fred.paucarespinoza@gmail.com</span></a>
+                    <a href="#name"><span class="white-text name">{{ user.first_name }} {{ user.last_name }}</span></a>
+                    <a href="#email"><span class="white-text email">{{ user.email }}</span></a>
                 </div>
+                {% endif %}
             </div>
         </li>
+        {% if user.is_authenticated %}
         <li><a href="{% url 'add' %}"><i class="material-icons">add</i>Agregar item</a></li>
         <li><a href="{% url 'home' %}"><i class="material-icons">list</i>Ver lista</a></li>
+        <li><a href="{% url 'home' %}"><i class="material-icons">redo</i>Salir</a></li>
+        {% else %}
+        <li><a href="{% url 'add' %}"><i class="material-icons">near_me</i>Iniciar sesión</a></li>
         <li><div class="divider"></div></li>
-        <li><a class="subheader">Contacto</a></li>
+        <li><a class="subheader">Desarrollado por</a></li>
 
         <li><a class="waves-effect" href="https://www.facebook.com/FredPaucarEspinoza" target="_blank"><i class="fab fa-facebook"></i>FredPaucarEspinoza</a></li>
         <li><a class="waves-effect" href="https://github.com/fredpaes" target="_blank"><i class="fab fa-github"></i>@fredpaes</a></li>
         <li><a class="waves-effect" href="https://api.whatsapp.com/send?phone=51965300377" target="_blank"><i class="fab fa-whatsapp"></i>Fred Paucar</a></li>
 
         <li class="center"><img src="{% static 'img/telf.png' %}" alt="contact"></li>
+        {% endif %}
     </ul>
 
     {% block content %}
