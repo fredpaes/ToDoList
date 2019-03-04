@@ -1,0 +1,39 @@
+{% extends 'partials/base.html' %}
+
+{% load staticfiles %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container form__login">
+    {% for msg in msgs %}
+    <span>{{ msg }}</span>
+    {% endfor %}
+    <form method="POST">
+        {% csrf_token %}
+        <section class="row">
+            <div class="input-field col s8 offset-s2">
+                <input id="user_name" type="text" name="user_name" required>
+                <label for="user_name">Nombre de usuario</label>
+            </div>
+            <div class="input-field col s8 offset-s2">
+                <input id="user_pwd" type="password" name="user_pwd" required>
+                <label for="user_pwd">Contraseña</label>
+            </div>
+        </section>
+        
+        <section class="row center">
+            <button class="btn waves-effect waves-light" type="submit">Login<i class="material-icons right">send</i></button>
+        </section>
+    </form>
+</div>
+<style>
+    .form__login {
+        background-color: #eceff1;
+        padding: 8% 8%;
+        margin-top: 20px;
+    }
+</style>
+
+{% endblock %}

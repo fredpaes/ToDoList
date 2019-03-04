@@ -20,9 +20,9 @@
                 {% if user.is_authenticated %}
                 <li><a href="{% url 'add' %}">Agregar item</a></li>
                 <li><a href="{% url 'home' %}">Ver lista</a></li>
-                <li><a href="">Salir</a></li>
+                <li><a href="{% url 'logout' %}">Salir</a></li>
                 {% else %}
-                <li><a href="">Iniciar sesión</a></li>
+                <li><a href="{% url 'login' %}">Iniciar sesión</a></li>
                 {% endif %}
             </ul>
         </div>
@@ -52,9 +52,9 @@
         {% if user.is_authenticated %}
         <li><a href="{% url 'add' %}"><i class="material-icons">add</i>Agregar item</a></li>
         <li><a href="{% url 'home' %}"><i class="material-icons">list</i>Ver lista</a></li>
-        <li><a href="{% url 'home' %}"><i class="material-icons">redo</i>Salir</a></li>
+        <li><a href="{% url 'logout' %}"><i class="material-icons">redo</i>Salir</a></li>
         {% else %}
-        <li><a href="{% url 'add' %}"><i class="material-icons">near_me</i>Iniciar sesión</a></li>
+        <li><a href="{% url 'login' %}"><i class="material-icons">near_me</i>Iniciar sesión</a></li>
         <li><div class="divider"></div></li>
         <li><a class="subheader">Desarrollado por</a></li>
 
@@ -68,7 +68,9 @@
 
     {% block content %}
     {% endblock %}
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="{% static 'js/script.js' %}"></script>
+    {% block js %}{% endblock %}
 </body>
 </html>
