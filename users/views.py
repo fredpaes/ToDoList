@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def log_in(request):
@@ -25,8 +26,7 @@ def log_in(request):
         # redirect a la vista lista
         return redirect('home')
 
+@login_required
 def log_out(request):
-    if request.user.is_authenticated:
-        logout(request)
-    
+    logout(request)
     return redirect('login')
