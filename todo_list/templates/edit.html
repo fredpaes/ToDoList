@@ -1,0 +1,45 @@
+{% extends 'partials/base.html' %}
+{% load staticfiles%}
+
+{% block content %}
+
+{% if item %}
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
+        <input required type="hidden" name="completed" value="{{ item.completed }}">
+        <section class="row">
+            <div class="input-field col s12">
+                <input required type="text" name=item id=toDoAdd value="{{ item.item }}">
+                <label for="toDoAdd">Item</label>
+            </div>
+        </section>
+        <section class="row">
+            <div class="input-field col s10 offset-s1">
+                <select class="icons" name="location">
+                    <option {% if item.location == 'in' %}selected{% endif %} value="in" data-icon="{% static 'img/home-icon.svg' %}">Interior</option>
+                    <option {% if item.location == 'out' %}selected{% endif %} value="out" data-icon="{% static 'img/public-icon.svg' %}">Exterior</option>
+                </select>
+                <label>Locación</label>
+            </div>
+        </section>
+        <section class="row">
+            <div class="col s2 offset-s1 right-align">Cantidad:</div>
+            <div class="range-field col s7 offset-s1">
+                <input type="range" id="toDoCnt" min="0" max="40" name="cant" value="{{ item.cant }}"/>
+            </div>
+        </section>
+        <section class="row">
+            <div class="input-field col s12">
+                <textarea name="description" id="toDoDesc" class="materialize-textarea">{{ item.description }}</textarea>
+                <label for="toDoDesc">Descripción adicional</label>
+            </div>
+        </section>
+        <section class="row center">
+            <button class="btn waves-effect waves-light">Guardar<i class="material-icons right">edit</i></button>
+        </section>
+    </form>
+</div>
+{% endif %}
+
+{% endblock %}

@@ -1,16 +1,42 @@
 {% extends 'partials/base.html' %}
 
 {% block content %}
-<h1>Hello world</h1>
-<span><a href="https://youtu.be/fEqOW6FrokA?t=751" target="_blank">Continue</a></span>
-<a class="btn" onclick="M.toast({html: 'Item added'})">Toast!</a>
-<br>
+
 {% if messages %}
-<span class="hola">funcar</span>
+{% for msg in messages %}
+<div class="blue-grey lighten-2 center" id="msg__box">
+    <span class="col s8 offset-s2 green-text text-darken-4">{{ msg }}</span>
+</div>
+{% endfor%}
 {% endif %}
-<ul class="collection">
-    {% for item in all_items %}
-    <li class="collection-item">{{item.item}}</li>
-    {% endfor %}
-</ul>
+
+<div class="container" style="margin-top: 4%">
+    <table class="highlight">
+        <tbody>
+            {% for item in all_items %}
+            <tr>
+                {% if item.completed %}
+                <td class="tbl center"><a class="green-text" href="{% url 'uncross' item.pk %}"><i class="material-icons green-text">check_box</i></a></td>
+                {% else %}
+                <td class="tbl center"><a class="red-text" href="{% url 'cross' item.pk %}"><i class="material-icons red-text">indeterminate_check_box</i></a></td>
+                {% endif %}
+                <td class="tbl {% if item.completed %}striker{% endif %}"><a class="black-text" href="{% url 'edit' item.pk %}">{{ item.item }}</a></td>
+                <td class="tbl center"><a href="{% url 'delete' item.pk %}" onclick="M.toast({html: 'Borrando ...'})"><i class="material-icons">delete_forever</i></a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<span><a href="https://youtu.be/fEqOW6FrokA?t=1065" target="_blank">Continue</a></span>
+
+<style>
+    .tbl {
+        border: 1px solid #eceff1;
+    }
+    .striker {
+        text-decoration: line-through;
+    }
+</style>
+
 {% endblock %}
