@@ -1,9 +1,6 @@
 {% extends 'partials/base.html' %}
 
 {% load staticfiles %}
-{% block css %}
-<link rel="stylesheet" href="{% static 'css/login.css' %}">
-{% endblock %}
 
 {% block content %}
 <div class="container form__login">
@@ -28,12 +25,5 @@
         </section>
     </form>
 </div>
-<style>
-    .form__login {
-        background-color: #eceff1;
-        padding: 8% 8%;
-        margin-top: 20px;
-    }
-</style>
 
 {% endblock %}

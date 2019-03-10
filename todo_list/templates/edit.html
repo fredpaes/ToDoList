@@ -7,11 +7,13 @@
 <div class="container">
     <form method="POST">
         {% csrf_token %}
-        <input required type="hidden" name="completed" value="{{ item.completed }}">
+        <section class="row">
+            <input required type="hidden" name="completed" value="{{ item.completed }}">
+        </section>
         <section class="row">
             <div class="input-field col s12">
-                <input required type="text" name=item id=toDoAdd value="{{ item.item }}">
-                <label for="toDoAdd">Item</label>
+                <input required type="text" name=item id=toDoAddEdit value="{{ item.item }}">
+                <label for="toDoAddEdit">Item</label>
             </div>
         </section>
         <section class="row">
@@ -26,13 +28,13 @@
         <section class="row">
             <div class="col s2 offset-s1 right-align">Cantidad:</div>
             <div class="range-field col s7 offset-s1">
-                <input type="range" id="toDoCnt" min="0" max="40" name="cant" value="{{ item.cant }}"/>
+                <input type="range" min="0" max="40" name="cant" value="{{ item.cant }}"/>
             </div>
         </section>
         <section class="row">
             <div class="input-field col s12">
-                <textarea name="description" id="toDoDesc" class="materialize-textarea">{{ item.description }}</textarea>
-                <label for="toDoDesc">Descripción adicional</label>
+                <textarea name="description" id="toDoDescEdit" class="materialize-textarea">{{ item.description }}</textarea>
+                <label for="toDoDescEdit">Descripción adicional</label>
             </div>
         </section>
         <section class="row center">

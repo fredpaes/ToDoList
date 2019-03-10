@@ -1,9 +1,6 @@
 {% extends 'partials/base.html' %}
 
 {% load staticfiles %}
-{% block css %}
-<link rel="stylesheet" href="{% static 'css/adding.css' %}">
-{% endblock %}
 
 {% block content %}
 
@@ -52,8 +49,5 @@
         </section>
     </form>
 </div>
-<script>
-    const cnt = document.getElementById('toDoCnt')
-    cnt.value = 0
-</script>
+
 {% endblock %}
