@@ -7,7 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}ToDo App{% endblock %}</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
+    <link rel="stylesheet" href="{% static 'css/materialize.min.css' %}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     {% block css %}{% endblock %}
@@ -33,11 +34,11 @@
         <li>
             <div class="user-view">
                 <div class="background">
-                    <img src="{% static 'img/webdev.jpg' %}">
+                    <img src="{% static 'img/webdev.jpg' %}" alt="background_menu">
                 </div>
                 <a href="#user">
                     {% if user.is_authenticated %}
-                    <img class="circle" src="https://www.fdexasesores.com/img/fdexsocial/fred.png">
+                    <img class="circle" src="https://www.fdexasesores.com/img/fdexsocial/fred.png" alt="user_account">
                     {% else %}
                     <i class="material-icons">account_circle</i>
                     {% endif %}
@@ -70,7 +71,8 @@
     {% block content %}
     {% endblock %}
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
+    <script src="{% static 'js/materialize.min.js' %}"></script>
     <script src="{% static 'js/script.js' %}"></script>
     {% block js %}{% endblock %}
 </body>
