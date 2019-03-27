@@ -1,0 +1,12 @@
+/* HOME */
+.striker {
+    text-decoration: line-through;
+}
+.home__container {
+    margin-top: 4%;
+}
+
+/* ADD */
+#msg__box {
+    padding: 10px 0px;
+}

@@ -1,6 +1,10 @@
-{% extends 'partials/base.html' %}
+{% extends 'base.html' %}
 
 {% load staticfiles %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
 
 {% block content %}
 <div class="container form__login">

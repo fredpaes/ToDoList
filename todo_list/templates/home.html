@@ -1,4 +1,8 @@
-{% extends 'partials/base.html' %}
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/todo_list.css' %}">
+{% endblock %}
 
 {% block content %}
 
